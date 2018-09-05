@@ -1,0 +1,216 @@
+
+
+
+
+    <form [formGroup]="rForm" (ngSubmit)="handleSaveNewRecord(rForm.value)">
+
+
+
+    <div class="row">
+
+
+
+
+
+			   <div class="col-md-4">
+
+
+			                <div class="form-group">
+			                <label>First Name</label>
+			                     <input type="text" class="form-control" formControlName="first_name">
+
+			                    <div class="alert  alert-warning" *ngIf="!rForm.controls['first_name'].valid && rForm.controls['first_name'].touched">Enter your first name</div>
+			                </div>
+
+
+
+
+			    </div>
+
+
+
+				  <div class="col-md-4">
+
+				                <div class="form-group">
+				                <label>Last Name</label>
+				                     <input type="text" class="form-control" formControlName="last_name">
+
+				                    <div class="alert  alert-warning" *ngIf="!rForm.controls['last_name'].valid && rForm.controls['last_name'].touched">Enter last name</div>
+				                    </div>
+
+
+
+
+				</div>
+
+
+  </div>
+
+     <div class="row">
+
+
+
+
+
+			   <div class="col-md-4">
+
+
+			                <div class="form-group">
+			                <label>Gender</label>
+			                     <input type="radio" class="form-control" value="M" formControlName="gender"> Male
+			                     <input type="radio" class="form-control" value="F" formControlName="gender"> Female
+
+			                    <div class="alert  alert-warning" *ngIf="!rForm.controls['gender'].valid && rForm.controls['gender'].touched">Please select one</div>
+			                </div>
+
+
+
+
+			    </div>
+
+
+
+				  <div class="col-md-4">
+
+				                <div class="form-group">
+				                <label>Age</label>
+				                     <input type="text" class="form-control" formControlName="age">
+
+				                    <div class="alert  alert-warning" *ngIf="!rForm.controls['age'].valid && rForm.controls['age'].touched">Enter a valid age</div>
+				                    </div>
+
+
+
+
+				</div>
+
+
+</div>
+
+
+<div class="row">
+
+
+			<div class="col-md-4">
+
+		        <div class="form-group">
+		        <label>City</label>
+		             <select class="form-control" formControlName="city" >
+	                	 <option *ngFor="let city of cities_of_country" value="{{city.city_name}}">{{city.city_name}}</option>
+
+	                </select>
+		        </div>
+
+		     </div>
+
+ 			<div class="col-md-4">
+
+		        <div class="form-group">
+		        <label>Country</label>
+		             <select class="form-control" formControlName="country" (change)="eventCountryCities($event.target.value)" >
+
+	                	 <option *ngFor="let country of countries_list" value="{{country.country_name}}">{{country.country_name}}</option>
+
+	                </select>
+		        </div>
+
+		     </div>
+
+
+
+</div>
+
+
+     <div class="row">
+
+
+
+
+
+			   <div class="col-md-12">
+
+
+			                <div class="form-group">
+			                <label>Diabetic?</label>
+			                     <input type="radio" class="form-control" value="Yes" formControlName="diabetic"> Yes
+			                     <input type="radio" class="form-control" value="No" formControlName="diabetic"> No
+			                     <input type="radio" class="form-control" value="Unknown" formControlName="diabetic"> Unknown
+
+			                    <div class="alert  alert-warning" *ngIf="!rForm.controls['diabetic'].valid && rForm.controls['diabetic'].touched">Please select status</div>
+			                </div>
+
+
+
+
+			    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+	<div class="row">
+
+					<div class="col-md-12">
+
+					  <div class="form-group">
+
+					                <button  type="submit" class="btn btn-primary btn-block" [disabled]="!rForm.valid">Save</button>
+					            </div>
+
+					</div>
+
+
+
+	    </div>
+
+
+
+</form>
+
+
+<div class="col-md-12">
+<div class="col-md-8">
+
+<h1>List of Medical Records</h1>
+</div>
+
+<div class="col-md-4">
+<input type="checkbox" value="1" (change)="filterMedicalRecords($event.target.value)"> Only Minors
+</div>
+</div>
+
+ <div class="row">
+
+    <div class="col-md-12">
+
+                        <div *ngFor="let record of medical_records;">
+
+                          {{medical.first_name}}, {{medical.age}} - {{medical.city}} ({{medical.country}})
+
+                        </div>
+
+                </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
